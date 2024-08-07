@@ -1,0 +1,17 @@
+﻿Scaffold-DbContext -Connection "Server=localhost,1433; Database=soccerdb; User Id=sa; Password=0p4BtZ4EJg; MultipleActiveResultSets=true; TrustServerCertificate=True;" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models" -ContextDir "Data" -Context "FootballDbContext" -NoOnConfiguring
+
+CREATE TABLE Positions (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(50) NOT NULL,
+    DisplayOrder INT NULL
+);
+
+CREATE TABLE Players (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ShirtNo INT NULL,
+    Name NVARCHAR(50) NOT NULL,
+    PositionId INT NOT NULL,
+    Appearances INT NULL,
+    Goals INT NULL,
+    FOREIGN KEY (PositionId) REFERENCES Positions(Id)
+);
